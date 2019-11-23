@@ -10,11 +10,6 @@ class Base_Stations
   end
 
   def to_s
-    str = ""
-    @all_stations.each do |base_station|
-      str += base_station.to_s
-      str += ' '
-    end
-    return str
+    @stations.join(' ')
   end
 end
