@@ -14,7 +14,7 @@ class Base_Stations_Test < Test::Unit::TestCase
   end
 
   def test_initialize
-    assert_equal([],@base_stations.all_stations)
+    assert_equal([],@base_stations.stations)
   end
 
   def test_to_s

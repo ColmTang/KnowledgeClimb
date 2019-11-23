@@ -9,7 +9,7 @@ class Base_Stations
     @stations << base_station
   end
 
-  def to_s
+  def to_s  #does |station| station.to_s + ' ' + |sta...
     @stations.join(' ')
   end
 end
