@@ -1,4 +1,3 @@
-
 class Cell
   attr_reader :x, :y
   def initialize(x,y)
@@ -6,28 +5,20 @@ class Cell
   end
 
   def coverage(base_stations)
-    @closest_base_distance = 21
-    base_stations.each do |base_station|
-      if(closest_base_distance > distance(base_station.cell))
-        closest_base_distance = distance(base_station.cell)
-        @closest_base_station = base_station
-      end
-    end
-    @coverage_dist = 1/@closest_base_distance
-    if(@coverage_dist > 0.3)
-      @coverage = "strong"
-    elsif(@coverage_dist <= 0.1)
-      @coverage = "weak"
+    closest = base_stations.stations.map { |station| distance(station.cell) }.min
+    coverage = 1 / (1 + closest)
+
+    if coverage > 0.3
+      "strong"
+    elsif coverage > 0.1
+      "medium"
     else
-      @coverage = "medium"
+      "weak"
     end
   end
 
   def distance(cell)
-    @dx = cell.x - @x
-    @dy = cell.y - @y
-    @distance = Math.sqrt((@dx*@dx) + (@dy*@dy))
-    return @distance
+    Math.sqrt((cell.x - @x) ** 2 + (cell.y - @y) ** 2)
   end
 
   def to_s
