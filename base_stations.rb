@@ -1,19 +1,15 @@
-
 class Base_Stations
+  attr_reader :stations
+
   def initialize
-    @all_stations = []
+    @stations = []
   end
 
   def add_station(base_station)
-    @all_stations << base_station
+    @stations << base_station
   end
 
   def to_s
-    str = ""
-    @all_stations.each do |base_station|
-      str += base_station.to_s
-      str += ' '
-    end
-    return str
+    @stations.join(' ')
   end
 end
